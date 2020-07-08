@@ -4,17 +4,17 @@ import org.springframework.core.convert.converter.Converter;
 
 import com.example.demo.redis.pojo.ILoggedOnUser;
 
-public class UserCacheKeyConverter implements Converter<UserCacheKey, String> {
+public class LoggedOnUserCacheKeyConverter implements Converter<String, String> {
 
 	private ILoggedOnUser userInformation;
 
-	public UserCacheKeyConverter(ILoggedOnUser userInformation) {
+	public LoggedOnUserCacheKeyConverter(ILoggedOnUser userInformation) {
 		this.userInformation = userInformation;
 	}
 
 	@Override
-	public String convert(UserCacheKey userCacheKey) {
-		final Object decoratedKey = decorateObjectKey(userCacheKey);
+	public String convert(String key) {
+		final Object decoratedKey = decorateObjectKey(key);
 		return (String) decoratedKey;
 	}
 

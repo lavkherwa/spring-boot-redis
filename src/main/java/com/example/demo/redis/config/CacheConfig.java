@@ -24,8 +24,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.format.support.DefaultFormattingConversionService;
 
-import com.example.demo.redis.cache.impl.UserCacheKey;
-import com.example.demo.redis.cache.impl.UserCacheKeyConverter;
+import com.example.demo.redis.cache.impl.LoggedOnUserCacheKeyConverter;
 import com.example.demo.redis.pojo.ILoggedOnUser;
 
 @Configuration
@@ -77,7 +76,7 @@ public class CacheConfig {
 		RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
 		DefaultFormattingConversionService conversionService = (DefaultFormattingConversionService) redisCacheConfiguration
 				.getConversionService();
-		conversionService.addConverter(UserCacheKey.class, String.class, new UserCacheKeyConverter(loggedOnUser));
+		conversionService.addConverter(String.class, String.class, new LoggedOnUserCacheKeyConverter(loggedOnUser));
 		redisCacheConfiguration.entryTtl(Duration.ofSeconds(600)).withConversionService(conversionService)
 				.disableCachingNullValues();
 		return RedisCacheManager.builder(connectionFactory).cacheDefaults(redisCacheConfiguration)

@@ -15,6 +15,8 @@ public class LoggedOnUserConfig {
 		/*
 		 * In real case get this value from the thread local variable which keeps the
 		 * loggedOnUserInfo and return
+		 * 
+		 * Currently kept it as hard coded value to validate key decoration
 		 */
 
 		LoggedOnUser user = new LoggedOnUser();
