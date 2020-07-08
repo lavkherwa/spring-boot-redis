@@ -1,0 +1,12 @@
+spring:
+  profile:
+    active: default
+  redis:
+    cluster:
+      nodes:
+      - host:000
+      - host:000
+    host: localhost
+    port: 000
+    session-cache:
+      ttl: 10
